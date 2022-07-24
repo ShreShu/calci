@@ -1,0 +1,37 @@
+.emailRow{
+    display: flex;
+    align-items: center;
+    padding: 5px 20px;
+    cursor: pointer;
+    width: 100%;
+}
+.emailRow__mailContent{
+    display: flex;
+    flex: 0.9;
+    justify-content: space-between;
+    align-items: center;
+}
+.emailRow__options{
+    display: flex;
+    flex: 0.1;
+    align-items: center;
+    
+}
+
+.emailRow__description{
+    font-weight: lighter;
+    margin-left: 10px;
+}
+
+
+
+.emailRow__message>h4{
+    text-overflow: ellipsis;
+    width: 400px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.emailRow:hover{
+    box-shadow: 1px 2px 5px -2px;
+}

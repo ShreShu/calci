@@ -1,0 +1,9 @@
+.emailList{
+    flex: 1;
+    overflow: scroll;
+}
+
+.emailList__list{
+    margin-top: 50px;
+    margin-left: 20px;
+}
