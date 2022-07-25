@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { formatEmail } from "../Util/UserNameFormat";
 import "./SignUpForm.css";
 const SignUpForm = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const formattedMail = formatEmail(email).toLowerCase();
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
@@ -16,6 +17,28 @@ const SignUpForm = () => {
 
   const passwordChange = (e) => {
     setPassword(e.target.value);
+  };
+
+  const createInbox = async () => {
+    const inbox = await axios.post(
+      `https://mail-box-client-948c9-default-rtdb.firebaseio.com/${formattedMail}/inbox.json`,
+      {
+        from: "google.com",
+        subject: "Welcome to the family",
+        message: `Hi ${email} ,Welcome to the gmail`,
+      }
+    );
+  };
+
+  const createSent = async () => {
+    const inbox = await axios.post(
+      `https://mail-box-client-948c9-default-rtdb.firebaseio.com/${formattedMail}/sent.json`,
+      {
+        to: "google.com",
+        subject: "Hi",
+        message: `Hi gmail ,I am ${email}`,
+      }
+    );
   };
 
   const formSubmitHandler = (event) => {
@@ -40,7 +63,12 @@ const SignUpForm = () => {
         { email: email, password: password, returnSecureToken: true }
       )
       .then((res) => {
-        console.log(res);
+        try {
+          const inbox = createInbox();
+          const sent = createSent();
+        } catch (e) {
+          console.log(e);
+        }
       })
       .catch((err) => {
         console.log(err);

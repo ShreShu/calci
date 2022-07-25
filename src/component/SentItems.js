@@ -2,15 +2,15 @@ import React, { useEffect } from "react";
 import "./EmailList.css";
 import EmailRow from "./EmailRow";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchInbox } from "../features/MailAction";
+import { fetchInbox, fetchSent } from "../features/MailAction";
 
-const EmailList = () => {
+const SentItems = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchInbox());
+    dispatch(fetchSent());
   }, []);
 
-  const inbox = useSelector((state) => state.user.inbox);
+  const sent = useSelector((state) => state.user.sent);
   return (
     <div className="emailList">
       <div className="emailList__settings">
@@ -18,7 +18,7 @@ const EmailList = () => {
         <div className="emailList__settingsRight"></div>
         <div className="emailList__section"></div>
         <div className="emailList__list">
-          {inbox.map((email) => (
+          {sent.map((email) => (
             <EmailRow
               title={email.subject}
               subject={email.subject}
@@ -42,4 +42,4 @@ const EmailList = () => {
   );
 };
 
-export default EmailList;
+export default SentItems;

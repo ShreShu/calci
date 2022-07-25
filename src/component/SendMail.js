@@ -5,10 +5,40 @@ import "./SendMail.css";
 import { useDispatch } from "react-redux/es/exports";
 import { mailActions } from "../features/mailSlice";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { formatEmail } from "../Util/UserNameFormat";
 const SendMail = () => {
   const dispatch = useDispatch();
+
+  const sendingMail = async (mail) => {
+    const senderEmail = localStorage.getItem("userMail");
+    const sender = formatEmail(senderEmail);
+    const reciever = formatEmail(mail.to);
+    const recieverMail = axios.post(
+      `https://mail-box-client-948c9-default-rtdb.firebaseio.com/${reciever}/inbox.json`,
+      {
+        from: senderEmail,
+        subject: mail.subject,
+        message: mail.message,
+      }
+    );
+
+    const sendererMail = axios.post(
+      `https://mail-box-client-948c9-default-rtdb.firebaseio.com/${sender}/sent.json`,
+      {
+        to: mail.to,
+        subject: mail.subject,
+        message: mail.message,
+      }
+    );
+  };
   const onSubmit = (data) => {
-    console.log(data);
+    try {
+      const sending = sendingMail(data);
+      dispatch(mailActions.closeSendMessage());
+    } catch (e) {
+      console.log(e);
+    }
   };
   const {
     register,
@@ -54,8 +84,9 @@ const SendMail = () => {
         {errors.message && (
           <span className="sendMail__error">Body is required</span>
         )}
+
         <div className="sendMail__options">
-          <button className="sendMail__button">Send</button>
+          <button className="sendMail__button btn btn-primary">Send</button>
         </div>
       </form>
     </div>

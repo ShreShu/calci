@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import "./Sidebar.css";
 import AddIcon from "@mui/icons-material/Add";
 import MailIcon from "@mui/icons-material/Mail";
@@ -14,11 +14,16 @@ import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux/es/exports";
 import { mailActions } from "../features/mailSlice";
 import { Outlet } from "react-router-dom";
+import { fetchInbox } from "../features/MailAction";
 const SideBar = () => {
   const dispatch = useDispatch();
   const composeMailHandler = () => {
     dispatch(mailActions.openSendMessage());
   };
+
+  useEffect(() => {
+    dispatch(fetchInbox());
+  });
 
   return (
     <div className="side">
@@ -44,7 +49,9 @@ const SideBar = () => {
           title="Snoozed"
           number={54}
         />
-        <SideBarOptions Icon={SendIcon} title="Sent" number={54} />
+        <NavLink to="sentItems">
+          <SideBarOptions Icon={SendIcon} title="Sent" number={54} />
+        </NavLink>
         <SideBarOptions Icon={InsertDriveFileIcon} title="Draft" number={54} />
         <SideBarOptions
           Icon={LabelImportantIcon}

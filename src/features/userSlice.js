@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isLoggedIn: false,
   token: "",
+  inbox: [],
+  sent: [],
 };
 
 export const userSlice = createSlice({
@@ -16,6 +18,13 @@ export const userSlice = createSlice({
     logout(state) {
       state.isLoggedIn = false;
       state.token = "";
+    },
+    inbox(state, action) {
+      console.log(action);
+      state.inbox = action.payload;
+    },
+    sent(state, action) {
+      state.sent = action.payload;
     },
   },
 });

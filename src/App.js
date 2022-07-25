@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -11,6 +11,8 @@ import SideBar from "./component/SideBar";
 import { BrowserRouter } from "react-router-dom";
 import SignUpForm from "./component/SignUpForm";
 import { userActions } from "./features/userSlice";
+import { fetchInbox } from "./features/MailAction";
+import SentItems from "./component/SentItems";
 function App() {
   const dispatch = useDispatch();
   const sendMessageIsOpen = useSelector(
@@ -18,7 +20,10 @@ function App() {
   );
 
   const user = localStorage.getItem("userMail");
-  if (user !== "") {
+  console.log(user);
+  if (user === "" || user === null) {
+    dispatch(userActions.logout());
+  } else {
     dispatch(userActions.login(localStorage.getItem("token")));
   }
 
@@ -34,6 +39,7 @@ function App() {
           <Route path="" element={<SideBar />}>
             <Route path="/inbox" element={<EmailList />} />
             <Route path="mail" element={<Mail />} />
+            <Route path="sentItems" element={<SentItems />} />
           </Route>
         )}
       </Routes>
