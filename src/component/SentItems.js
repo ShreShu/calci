@@ -11,6 +11,7 @@ const SentItems = () => {
   }, []);
 
   const sent = useSelector((state) => state.user.sent);
+  console.log(sent);
   return (
     <div className="emailList">
       <div className="emailList__settings">
@@ -20,22 +21,15 @@ const SentItems = () => {
         <div className="emailList__list">
           {sent.map((email) => (
             <EmailRow
+              type="sent"
               title={email.subject}
               subject={email.subject}
               description={email.message}
               time="3:06"
-              id={email.id}
-              key={email.id}
+              id={email.key}
+              key={email.key}
             />
           ))}
-
-          <EmailRow
-            title="IndiGo"
-            subject="Your Indgio Itinerary"
-            description="-Your job alert for java software engineer"
-            time="3:06 PM"
-            id="e1"
-          />
         </div>
       </div>
     </div>

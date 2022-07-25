@@ -4,15 +4,27 @@ import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import { IconButton } from "@mui/material";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import { useNavigate } from "react-router-dom";
-const EmailRow = ({ title, subject, description, time, id }) => {
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+const EmailRow = ({
+  type,
+  title,
+  subject,
+  description,
+  time,
+  id,
+  key,
+  read,
+}) => {
+  console.log(read);
   const navigate = useNavigate();
   const openMailHandler = () => {
-    navigate("/mail");
+    navigate(`/mail/${type}/${id}`);
   };
 
   return (
-    <div onClick={openMailHandler} className="emailRow">
-      <div className="emailRow__options">
+    <div onClick={openMailHandler} className={`emailRow ${read ? "read" : ""}`}>
+      <div className={`mailRow__options`}>
+        {!read && <FiberManualRecordIcon className="read_dot" />}
         <IconButton>
           <CheckBoxOutlineBlankIcon />
         </IconButton>
@@ -21,12 +33,12 @@ const EmailRow = ({ title, subject, description, time, id }) => {
         </IconButton>
       </div>
       <div className="emailRow__mailContent">
-        <h3 className="emailRow__title">{title}</h3>
+        <h4 className="emailRow__title">{title}</h4>
         <div className="emailRow__message">
-          <h4>
+          <h5>
             {subject}
             <span className="emailRow__description">{description}</span>
-          </h4>
+          </h5>
         </div>
         <div className="email__description">{time}</div>
       </div>

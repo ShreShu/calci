@@ -11,6 +11,7 @@ const EmailList = () => {
   }, []);
 
   const inbox = useSelector((state) => state.user.inbox);
+  console.log(inbox);
   return (
     <div className="emailList">
       <div className="emailList__settings">
@@ -20,22 +21,16 @@ const EmailList = () => {
         <div className="emailList__list">
           {inbox.map((email) => (
             <EmailRow
+              type="inbox"
               title={email.subject}
               subject={email.subject}
               description={email.message}
               time="3:06"
-              id={email.id}
-              key={email.id}
+              id={email.key}
+              key={email.key}
+              read={email.read}
             />
           ))}
-
-          <EmailRow
-            title="IndiGo"
-            subject="Your Indgio Itinerary"
-            description="-Your job alert for java software engineer"
-            time="3:06 PM"
-            id="e1"
-          />
         </div>
       </div>
     </div>

@@ -20,6 +20,7 @@ const SendMail = () => {
         from: senderEmail,
         subject: mail.subject,
         message: mail.message,
+        read: false,
       }
     );
 

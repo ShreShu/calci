@@ -38,8 +38,8 @@ function App() {
         {isLoggedIn && (
           <Route path="" element={<SideBar />}>
             <Route path="/inbox" element={<EmailList />} />
-            <Route path="mail" element={<Mail />} />
-            <Route path="sentItems" element={<SentItems />} />
+            <Route path="mail/:type/:mailid" element={<Mail />} />
+            <Route path="/sentItems" element={<SentItems />} />
           </Route>
         )}
       </Routes>
