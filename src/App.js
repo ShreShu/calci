@@ -29,6 +29,11 @@ function App() {
 
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
+  setInterval(() => {
+    console.log("calling api");
+    dispatch(fetchInbox());
+  }, 2000);
+
   return (
     <React.Fragment>
       {isLoggedIn && <Header />}
