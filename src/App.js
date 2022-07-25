@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import EmailList from "./component/EmailList";
@@ -10,10 +10,17 @@ import SendMail from "./component/SendMail";
 import SideBar from "./component/SideBar";
 import { BrowserRouter } from "react-router-dom";
 import SignUpForm from "./component/SignUpForm";
+import { userActions } from "./features/userSlice";
 function App() {
+  const dispatch = useDispatch();
   const sendMessageIsOpen = useSelector(
     (state) => state.mail.sendMessageIsOpen
   );
+
+  const user = localStorage.getItem("userMail");
+  if (user !== "") {
+    dispatch(userActions.login(localStorage.getItem("token")));
+  }
 
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
