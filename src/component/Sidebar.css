@@ -19,3 +19,17 @@
 .sidebar >a{
     text-decoration: none;
 }
+
+.side{
+    display: flex;
+    overflow: hidden;
+    flex: 1;
+}
+
+.sidebar__child{
+    flex: 0.75;
+    overflow: hidden;
+    height: 80vh;
+    width: 70vh;
+}
+

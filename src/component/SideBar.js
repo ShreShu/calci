@@ -13,6 +13,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux/es/exports";
 import { mailActions } from "../features/mailSlice";
+import { Outlet } from "react-router-dom";
 const SideBar = () => {
   const dispatch = useDispatch();
   const composeMailHandler = () => {
@@ -20,28 +21,41 @@ const SideBar = () => {
   };
 
   return (
-    <div className="sidebar">
-      <Button
-        onClick={composeMailHandler}
-        startIcon={<AddIcon fontSize="large" />}
-        className="sidebar__compose"
-      >
-        Compose
-      </Button>
-      <NavLink to="/">
+    <div className="side">
+      <div className="sidebar">
+        <Button
+          onClick={composeMailHandler}
+          startIcon={<AddIcon fontSize="large" />}
+          className="sidebar__compose"
+        >
+          Compose
+        </Button>
+        <NavLink to="inbox">
+          <SideBarOptions
+            Icon={MailIcon}
+            title="Inbox"
+            number={54}
+            seleted={true}
+          />
+        </NavLink>
+        <SideBarOptions Icon={StarIcon} title="Starred" number={54} />
         <SideBarOptions
-          Icon={MailIcon}
-          title="Inbox"
+          Icon={AccessTimeFilledIcon}
+          title="Snoozed"
           number={54}
-          seleted={true}
         />
-      </NavLink>
-      <SideBarOptions Icon={StarIcon} title="Starred" number={54} />
-      <SideBarOptions Icon={AccessTimeFilledIcon} title="Snoozed" number={54} />
-      <SideBarOptions Icon={SendIcon} title="Sent" number={54} />
-      <SideBarOptions Icon={InsertDriveFileIcon} title="Draft" number={54} />
-      <SideBarOptions Icon={LabelImportantIcon} title="Important" number={54} />
-      <SideBarOptions Icon={ExpandMoreIcon} title="More" number={54} />
+        <SideBarOptions Icon={SendIcon} title="Sent" number={54} />
+        <SideBarOptions Icon={InsertDriveFileIcon} title="Draft" number={54} />
+        <SideBarOptions
+          Icon={LabelImportantIcon}
+          title="Important"
+          number={54}
+        />
+        <SideBarOptions Icon={ExpandMoreIcon} title="More" number={54} />
+      </div>
+      <div className="sidebar__child">
+        <Outlet />
+      </div>
     </div>
   );
 };
