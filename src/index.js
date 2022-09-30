@@ -2,11 +2,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
-import "bootstrap/dist/css/bootstrap.css";
-<link
-  rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-/>;
+
 const container = document.getElementById("root");
 const root = createRoot(container);
 
