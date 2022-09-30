@@ -1,0 +1,45 @@
+.screen_arithmetic{
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    text-align: right;
+    margin-top: 30px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+
+.screen_output{
+    text-align: right;
+    font-weight: bolder;
+    padding-right: 20px;
+}
+
+.screen_buttons{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    margin-left: 25px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.screen__buttons__button{
+    width: 70px;
+    height: 60px;
+    border-radius: 49%;
+   background-color:  rgb(176, 174, 174);
+   color: white;
+   font-weight: bolder;
+   background-color: orange;
+}
+
+.screen__history{
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    text-align: right;
+    margin-top: 30px;
+    padding-right: 20px;
+    padding-left: 20px;
+}

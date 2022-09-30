@@ -1,0 +1,12 @@
+.button_input{
+    width: 70px;
+    height: 60px;
+    border-radius: 49%;
+   background-color:  rgb(176, 174, 174);
+   color: white;
+   font-weight: bolder;
+}
+
+.orange{
+    background-color: orange;
+}
